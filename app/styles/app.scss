@@ -1,3 +1,326 @@
 @import "ember-bootstrap/bootstrap";
 
-@import "ember-bootstrap/bootstrap";
+@mixin btn-icon {
+  padding: 4px 4px 2px;
+  line-height: 1;
+  margin-top: 10px;
+  border: none;
+  font-size: 20px;
+}
+
+@mixin zone {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: $body-bg;
+  text-align: left;
+}
+
+@mixin bordered-zone {
+  border: solid 1px $body-bg;
+  border-radius: 6px;
+  @include zone;
+}
+
+.img-thumbnail {
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.comics {
+  @extend .col-xs-12;
+  @extend .col-md-3;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .filter {
+    @extend .form-control;
+    display: inline-block;
+    margin-bottom: 10px;
+
+    width: 80%
+  }
+
+  .sort {
+    @extend .btn;
+    @extend .btn-default;
+    @include btn-icon;
+
+    float: right;
+    background-color: $brand-primary;
+    color: $body-bg;
+    font-size: 17px;
+    padding: 10px 10px 6px;
+    margin-top: 0;
+
+    &:hover, &:focus, &:active {
+      background-color: $brand-primary !important;
+      color: $body-bg !important;
+      border: none !important;
+      outline: none !important;
+    }
+
+    &.sort-asc:before {
+      content: "\e114";
+      font-family: 'Glyphicons Halflings';
+    }
+
+    &.sort-desc:before {
+      content: "\e113";
+      font-family: 'Glyphicons Halflings';
+    }
+  }
+
+  ul {
+    @extend .list-group;
+
+    & > li {
+      @extend .list-group-item;
+
+      cursor: pointer;
+
+      &:not(.active) {
+        &.comic-with-scriptwriter {
+          @extend .list-group-item-success;
+        }
+
+        &.comic-without-scriptwriter {
+          @extend .list-group-item-danger;
+        }
+
+        &:hover {
+          color: $gray-dark;
+          background-color: $gray-lighter;
+        }
+      }
+
+      a.active {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .add-comic {
+    @include bordered-zone;
+
+    display: block;
+    border-color: $gray-lighter;
+    padding-left: 47%;
+    padding-right: 47%;
+    margin-bottom: 10px;
+
+    &:before {
+      font-family: 'Glyphicons Halflings';
+      content: "\2b";
+    }
+  }
+}
+
+#no-selected-comic {
+  @extend .col-xs-12;
+  @extend .col-md-9;
+}
+
+#error {
+  @extend .col-xs-12;
+  @extend .col-md-9;
+
+  @extend .alert;
+  @extend .alert-danger;
+}
+
+.buttons {
+  float: right;
+  margin-top: 4px;
+}
+
+.btn-fav {
+  @extend .btn;
+  @include btn-icon;
+
+  background-color: $body-bg;
+  color: $brand-primary;
+  width: 100%;
+  font-size: 200%;
+
+  &:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e007";
+  }
+
+  &.selected {
+    &:before {
+      font-family: 'Glyphicons Halflings';
+      content: "\e006";
+    }
+  }
+}
+
+.selected-comic {
+  @extend .col-xs-12;
+  @extend .col-md-5;
+
+  background-color: #428bca;
+  border: solid 1px #e5e5e5;
+  border-radius: 6px;
+  text-align: center;
+  padding-bottom: 15px;
+
+  .description {
+    @include bordered-zone;
+  }
+
+  h3 {
+    color: #ffffff;
+    margin-top: 15px;
+    text-align: left;
+    margin-bottom: 13px;
+  }
+
+  .cover {
+    height: 250px;
+    width: 190px;
+    padding: 10px;
+    @extend .img-thumbnail;
+  }
+
+  dl {
+    @extend .dl-horizontal;
+    @include bordered-zone;
+
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  dt {
+    text-align: left !important;
+    width: 120px !important;
+  }
+
+  .btn-edit {
+    @extend .btn;
+    @include btn-icon;
+
+    background-color: $body-bg;
+    color: $brand-primary;
+
+    &:before {
+      font-family: 'Glyphicons Halflings';
+      content: "\270f";
+    }
+  }
+
+  form {
+    @extend .form-horizontal;
+
+    input {
+      @extend .form-control;
+    }
+
+    .btn-submit {
+      @extend .btn;
+      @extend .btn-success;
+      @include btn-icon;
+
+      &:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e013";
+      }
+      margin-left: 5px;
+    }
+
+    .btn-cancel {
+      @extend .btn;
+      @extend .btn-danger;
+      @include btn-icon;
+
+      &:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e014";
+      }
+    }
+
+    .title, .scriptwriter, .illustrator, .publisher {
+      @extend .form-group;
+      @include clearfix;
+
+      label {
+        @include make-sm-column(3);
+        padding-top: 7px;
+      }
+
+      .control {
+        @include make-sm-column(9);
+      }
+    }
+
+    .title {
+      margin-left: 0;
+
+      input {
+        margin: 10px 0 10px;
+        width: 80%;
+        text-align: left;
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.comic-albums {
+  @extend .col-xs-12;
+  @extend .col-md-4;
+
+  ul {
+    margin: 20px 0;
+    padding-left: 10px;
+  }
+
+  .album {
+    @include make-row();
+    list-style: none;
+    @include bordered-zone();
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: $brand-primary;
+    color: $body-bg;
+
+    h4 {
+      margin-top: 0;
+    }
+
+    .cover {
+      @extend .col-xs-2;
+      max-height: 70px;
+      border: none;
+      padding: 2px;
+    }
+
+    .description {
+      @extend .col-xs-10;
+
+      dl {
+        @extend .dl-horizontal;
+        margin-bottom: 0;
+
+        dt {
+          width: 75px;
+          text-align: left;
+        }
+
+        dd {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
