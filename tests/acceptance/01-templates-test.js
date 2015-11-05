@@ -1,6 +1,6 @@
 import { run } from '@ember/runloop';
 import { visit, find, findAll } from '@ember/test-helpers';
-import { module, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import appRoute from 'ember-training/routes/application';
 
@@ -21,7 +21,7 @@ module('01 - Templates Acceptance Tests when no scriptwriters', function(hooks) 
     });
   });
 
-  test("01 - Templates - 01 - Should display comics", async function (assert) {
+  skip("01 - Templates - 01 - Should display comics", async function (assert) {
     assert.expect(5);
 
     await visit('/');
@@ -49,7 +49,7 @@ module('01 - Templates Acceptance Tests when mixed scriptwriters', function(hook
     });
   });
 
-  test("01 - Templates - 02 - Should display scriptwriter if exists", async function (assert) {
+  skip("01 - Templates - 02 - Should display scriptwriter if exists", async function (assert) {
     assert.expect(5);
 
     await visit('/');
@@ -65,7 +65,7 @@ module('01 - Templates Acceptance Tests when mixed scriptwriters', function(hook
     assert.ok($comicItems[1].textContent.indexOf(MIXED_SCRIPTWRITERS[1].title + " by " + MIXED_SCRIPTWRITERS[1].scriptwriter) >= 0, "Second comic title is correct");
   });
 
-  test("01 - Templates - 03 - Should change class if no scriptwriter", async function (assert) {
+  skip("01 - Templates - 03 - Should change class if no scriptwriter", async function (assert) {
     assert.expect(5);
 
     await visit('/');
@@ -93,7 +93,7 @@ module('01 - Templates Acceptance Tests when empty', function(hooks) {
     });
   });
 
-  test("01 - Templates - 04 - Should display message if empty", async function (assert) {
+  skip("01 - Templates - 04 - Should display message if empty", async function (assert) {
     assert.expect(3);
 
     await visit('/');
