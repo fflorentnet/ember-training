@@ -1,12 +1,34 @@
 import Ember from 'ember';
+import Comic from 'ember-training/models/comic';
+
+let blackSad = Comic.create({
+  slug: 'blacksad',
+  title: 'Blacksad',
+  scriptwriter: 'Juan Diaz Canales',
+  illustrator: 'Juanjo Guarnido',
+  publisher: 'Dargaud'
+});
+
+let calvinAndHobbes = Comic.create({
+  slug: 'calvin-and-hobbes',
+  title: 'Calvin and Hobbes',
+  scriptwriter: 'Bill Watterson',
+  illustrator: 'Bill Watterson',
+  publisher: 'Andrews McMeel Publishing'
+});
+
+let akira = Comic.create({
+  slug: 'akira',
+  title: 'Akira',
+  scriptwriter: 'Katsuhiro Ôtomo',
+  illustrator: 'Katsuhiro Ôtomo',
+  publisher: 'Epic Comics'
+});
+
+let comics = [blackSad, calvinAndHobbes, akira];
 
 export default Ember.Route.extend({
-
-  model: function () {
-    // WARN : SOULD NOT BE DONE : We should not affect anything to windows but
-    // for the exercice, we want to access to comics from console today
-    window.comics = [{title: "Blacksad"}, {title: "Calvin and Hobbes", scriptwriter: "Bill Watterson"}];
-
-    return window.comics;
+  model () {
+    return comics;
   }
 });
