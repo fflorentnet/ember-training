@@ -2,7 +2,13 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model (params) {
-    return this.modelFor('comics').findBy('slug', params.comic_slug);
+    let askedModel = this.modelFor('comics').findBy('slug', params.comic_slug);
+
+    if (askedModel === undefined) {
+      throw new Error("No comic found with slug: " + params.comic_slug);
+    }
+
+    return askedModel;
   },
   serialize: function(model) {
     return {
