@@ -20,8 +20,8 @@ let calvinAndHobbes = Comic.create({
 let akira = Comic.create({
   slug: 'akira',
   title: 'Akira',
-  scriptwriter: 'Katsuhiro Ôtomo',
-  illustrator: 'Katsuhiro Ôtomo',
+  scriptwriter: 'Katsuhiro Otomo',
+  illustrator: 'Katsuhiro Otomo',
   publisher: 'Epic Comics'
 });
 
