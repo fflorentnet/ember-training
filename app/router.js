@@ -6,8 +6,10 @@ const Router = Ember.Router.extend({
   rootURL: config.rootURL
 });
 
-Router.map(function() {
-  this.route('comics');
+Router.map(function () {
+  this.route('comics', function() {
+    this.route('comic');
+  });
 });
 
 export default Router;
