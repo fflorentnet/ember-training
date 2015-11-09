@@ -76,7 +76,8 @@ test("02 - Routing - 01 - Should display second level title", function (assert) 
 test("02 - Routing - 02 - Should display text on comics/", function (assert) {
   assert.expect(1);
 
-  visit('/comics').then(function () {
+  visit('/comics');
+  andThen(() => {
     assert.ok(find("#no-selected-comic").text().indexOf("Please select on comic book for detailled information.") >= 0, "No selected comics text is displayed");
   });
 });
@@ -160,7 +161,8 @@ test("02 - Routing - 07 - Should link to edit route", function (assert) {
     let $btnEdit = $selectedComic.find(".btn-edit");
     assert.equal($btnEdit.length, 1, "Edit button exists");
 
-    click($btnEdit).then(function () {
+    click($btnEdit);
+    andThen(() => {
       assert.equal(currentRouteName(), 'comic.edit', "Route name is correct");
 
       let $form = find("form");
@@ -199,12 +201,13 @@ test("02 - Routing - 09 - Should link to create route", function (assert) {
   andThen(() => {
     let $comics = find(".comics .comics-list > .comics-list-item");
     let comicsLength = $comics.length;
-    assert.ok(comicsLength >= 3, "Comics list displayed with more than 3 items");
+    assert.ok(comicsLength > 3, "Comics list displayed with more than 3 items");
 
     let $addComic = find(".add-comic");
     assert.equal($addComic.length, 1, "Create button exists");
 
-    click($addComic).then(function () {
+    click($addComic);
+    andThen(() => {
       assert.equal(currentRouteName(), 'comics.create', "Route name is correct");
 
       let $form = find(".comic form");
