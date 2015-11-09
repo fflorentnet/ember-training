@@ -186,7 +186,7 @@ module('02 - Routing Acceptance Tests', function(hooks) {
 
     let $comics = findAll(".comics .comics-list > .comics-list-item");
     let comicsLength = $comics.length;
-    assert.ok(comicsLength >= 3, "Comics list displayed with more than 3 items");
+    assert.ok(comicsLength > 3, "Comics list displayed with more than 3 items");
   
     let $addComic = find(".add-comic");
     assert.notEqual($addComic, null, "Create button exists");
