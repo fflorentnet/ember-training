@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function () {
   this.route('comics', function() {
-    this.route('comic', {path: '/:comic_slug'});
+    this.route('comic', {path: '/:comic_slug', resetNamespace: true});
   });
 });
 
