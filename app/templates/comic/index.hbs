@@ -1,0 +1,17 @@
+<div class="comic">
+  <div class="comic-header">
+    <h3 class="comic-title">{{model.title}}</h3>
+    <div class="buttons">
+      {{link-to "" 'comic.edit' model class="btn-edit"}}
+    </div>
+  </div>
+
+  <dl class="comic-description">
+    <dt class="comic-label">scriptwriter</dt>
+    <dd class="comic-value">{{model.scriptwriter}} </dd>
+    <dt class="comic-label">illustrator</dt>
+    <dd class="comic-value">{{model.illustrator}}</dd>
+    <dt class="comic-label">publisher</dt>
+    <dd class="comic-value">{{model.publisher}}</dd>
+  </dl>
+</div>
