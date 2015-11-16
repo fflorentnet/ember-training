@@ -41,19 +41,19 @@ module('Unit | Route | comic', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
-    let route = this.owner.lookup('route:comics.comic');
+    let route = this.owner.lookup('route:comic');
     route.modelFor = function () {
       return COMICS;
     };
   });
 
   test('it exists', function (assert) {
-    const route = this.owner.lookup('route:comics.comic');
+    const route = this.owner.lookup('route:comic');
     assert.ok(route);
   });
   
   test('model() should retrieve existing slug', function (assert) {
-    const route = this.owner.lookup('route:comics.comic');
+    const route = this.owner.lookup('route:comic');
   
     const params = {comic_slug: 'blacksad'};
     const model = route.model(params);
@@ -64,7 +64,7 @@ module('Unit | Route | comic', function(hooks) {
   test('model() should throw error if slug not found', function (assert) {
     assert.expect(1);
   
-    const route = this.owner.lookup('route:comics.comic');
+    const route = this.owner.lookup('route:comic');
     let params = {comic_slug: 'wrong'};
   
     try {
