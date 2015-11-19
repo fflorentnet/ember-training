@@ -48,7 +48,7 @@ let setupApp = function () {
   application = startApp();
 };
 
-module('01 - Routing Acceptance Tests', {
+module('02 - Routing Acceptance Tests', {
   beforeEach() {
     setupApp();
   },
