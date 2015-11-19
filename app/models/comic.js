@@ -5,5 +5,12 @@ export default Ember.Object.extend({
   title: '',
   scriptwriter: '',
   illustrator: '',
-  publisher: ''
+  publisher: '',
+
+  reset(comic) {
+    this.set('title', comic.get('title'));
+    this.set('scriptwriter', comic.get('scriptwriter'));
+    this.set('illustrator', comic.get('illustrator'));
+    this.set('publisher', comic.get('publisher'));
+  }
 });

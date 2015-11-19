@@ -10,7 +10,7 @@ export default Ember.Route.extend({
 
     return askedModel;
   },
-  serialize: function(model) {
+  serialize (model) {
     return {
       comic_slug: model.get('slug')
     };
