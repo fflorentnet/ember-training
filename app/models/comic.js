@@ -1,7 +1,11 @@
-import EmberObject from '@ember/object';
+import EmberObject, { computed } from '@ember/object';
 
 export default EmberObject.extend({
-  slug: '',
+  slug: computed('title', function() {
+    const title = this.get('title') || 'new';
+    return title.dasherize();
+  }),
+
   title: '',
   scriptwriter: '',
   illustrator: '',
