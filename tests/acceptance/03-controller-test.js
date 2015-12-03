@@ -197,7 +197,7 @@ module('03 - Controller Acceptance Tests', function(hooks) {
 
     let newTitle = "new value";
     await fillIn(".comic form #title", newTitle);
-    await click(".comics .comics-list > .comics-list-item:first-child > a");
+    await click(".comics .comics-list > .comics-list-item:last-child > a");
 
     assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
     assert.ok(find(".comic .comic-title").textContent.indexOf("Akira") >= 0, "Title not modified");
