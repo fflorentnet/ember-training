@@ -9,7 +9,7 @@
         <button type="reset" {{action "cancel"}} class="btn-cancel"></button>
       </div>
     </div>
-
+    {{image-cover name=model.slug}}
     <div class="comic-description">
       <label class="comic-label" for="scriptwriter">Scriptwriter</label>
       {{input id="scriptwriter" type="text" class="comic-value" value=model.scriptwriter required="required"}}
