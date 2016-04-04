@@ -5,6 +5,25 @@ export default Ember.Component.extend({
   classNames: 'cover',
   attributeBindings: 'src',
   src: function () {
-    return `/assets/images/comics/covers/${this.get('name')}.jpg`;
-  }.property('name')
+    return this.getImagePath(this.get('name'));
+  }.property('name'),
+
+  getImagePath(name) {
+    return `/assets/images/comics/covers/${name}.jpg`;
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    this.$().on('error', () => {
+      return this.onError();
+    });
+  },
+
+  willDestroyElement(){
+    this.$().off('error');
+  },
+
+  onError() {
+    this.$().attr('src', this.getImagePath('default'));
+  }
 });
