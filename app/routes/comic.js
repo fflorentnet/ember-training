@@ -14,5 +14,11 @@ export default Ember.Route.extend({
     return {
       comic_slug: model.get('slug')
     };
+  },
+  actions: {
+    favorize () {
+      let model = this.modelFor(this.routeName);
+      Ember.Logger.debug(model.get('slug'), '- favorite:', model.get('isFavorite'));
+    }
   }
 });

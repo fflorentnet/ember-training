@@ -1,6 +1,6 @@
 <div class="comic">
+  {{fav-btn selected=model.isFavorite action="favorize"}}
   <div class="comic-header">
-    {{fav-btn selected=model.isFavorite}}
     <h3 class="comic-title">{{model.title}}</h3>
     <div class="buttons">
       {{link-to "" 'comic.edit' model class="btn-edit"}}

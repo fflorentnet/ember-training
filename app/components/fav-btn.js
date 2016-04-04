@@ -5,7 +5,8 @@ export default Ember.Component.extend({
   classNames: 'btn-fav',
   classNameBindings: 'selected',
 
-  click: function () {
+  click() {
     this.toggleProperty('selected');
+    this.sendAction();
   }
 });
