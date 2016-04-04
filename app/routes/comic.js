@@ -14,5 +14,12 @@ export default Route.extend({
     return {
       comic_slug: model.get('slug')
     };
+  },
+  actions: {
+    onFavorize () {
+      const model = this.modelFor(this.routeName);
+      // eslint-disable-next-line no-console
+      console.debug(model.get('slug'), '- favorite:', model.get('isFavorite'));
+    }
   }
 });

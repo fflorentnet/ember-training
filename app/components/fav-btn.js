@@ -5,7 +5,9 @@ export default Component.extend({
   classNames: 'btn-fav',
   classNameBindings: 'selected',
 
-  click: function () {
+  click() {
     this.toggleProperty('selected');
+    // eslint-disable-next-line ember/closure-actions
+    this.sendAction();
   }
 });
