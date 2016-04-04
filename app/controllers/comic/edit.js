@@ -11,6 +11,10 @@ export default Controller.extend({
     cancel() {
       this.set('hasUserSavedOrCancel', true);
       return true;
+    },
+
+    favorize() {
+      this.send('onFavorize');
     }
   }
 });
