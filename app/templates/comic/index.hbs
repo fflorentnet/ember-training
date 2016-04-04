@@ -1,5 +1,5 @@
 <div class="comic">
-  {{fav-btn selected=model.isFavorite}}
+  {{fav-btn selected=model.isFavorite action=(action "favorize")}}
   <div class="comic-header">
     <h3 class="comic-title">{{model.title}}</h3>
     <div class="buttons">
