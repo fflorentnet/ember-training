@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import DS from 'ember-data';
 
-export default Ember.Object.extend({
-  slug: function() {
+export default DS.Model.extend({
+  slug: function () {
     let title = this.get('title') || 'new';
     return title.dasherize();
   }.property('title'),
-  title: '',
-  scriptwriter: '',
-  illustrator: '',
-  publisher: '',
-  isFavorite: false,
+  
+  title: DS.attr('string'),
+  scriptwriter: DS.attr('string'),
+  illustrator: DS.attr('string'),
+  publisher: DS.attr('string'),
+  isFavorite: DS.attr('boolean', {defaultValue: false}),
 
   reset(comic) {
     this.set('title', comic.get('title'));

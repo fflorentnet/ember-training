@@ -1,34 +1,34 @@
 import Ember from 'ember';
-import Comic from 'ember-training/models/comic';
 
-let blackSad = Comic.create({
-  slug: 'blacksad',
+let blackSad = {
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
   illustrator: 'Juanjo Guarnido',
   publisher: 'Dargaud'
-});
+};
 
-let calvinAndHobbes = Comic.create({
-  slug: 'calvin-and-hobbes',
+let calvinAndHobbes = {
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
   illustrator: 'Bill Watterson',
   publisher: 'Andrews McMeel Publishing'
-});
+};
 
-let akira = Comic.create({
-  slug: 'akira',
+let akira = {
   title: 'Akira',
   scriptwriter: 'Katsuhiro Otomo',
   illustrator: 'Katsuhiro Otomo',
   publisher: 'Epic Comics'
-});
-
-let comics = [blackSad, calvinAndHobbes, akira];
+};
 
 export default Ember.Route.extend({
+  init() {
+    this._super(...arguments);
+    this.store.createRecord('comic', akira);
+    this.store.createRecord('comic', blackSad);
+    this.store.createRecord('comic', calvinAndHobbes);
+  },
   model () {
-    return comics;
+    return this.store.peekAll('comic');
   }
 });
