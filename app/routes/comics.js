@@ -1,35 +1,37 @@
 import Route from '@ember/routing/route';
-import Comic from 'ember-training/models/comic';
 
-const blackSad = Comic.create({
+const blackSad = {
   slug: 'blacksad',
   title: 'Blacksad',
   scriptwriter: 'Juan Diaz Canales',
   illustrator: 'Juanjo Guarnido',
   publisher: 'Dargaud'
-});
+};
 
-const calvinAndHobbes = Comic.create({
+const calvinAndHobbes = {
   slug: 'calvin-and-hobbes',
   title: 'Calvin and Hobbes',
   scriptwriter: 'Bill Watterson',
   illustrator: 'Bill Watterson',
   publisher: 'Andrews McMeel Publishing'
-});
+};
 
-const akira = Comic.create({
+const akira = {
   slug: 'akira',
   title: 'Akira',
   scriptwriter: 'Katsuhiro Ôtomo',
   illustrator: 'Katsuhiro Ôtomo',
   publisher: 'Epic Comics'
-});
-
-const comics = [blackSad, calvinAndHobbes, akira];
+};
 
 export default Route.extend({
-
-  model() {
-    return comics;
+  init() {
+    this._super(...arguments);
+    this.store.createRecord('comic', akira);
+    this.store.createRecord('comic', blackSad);
+    this.store.createRecord('comic', calvinAndHobbes);
+  },
+  model () {
+    return this.store.peekAll('comic');
   }
 });
