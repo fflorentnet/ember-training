@@ -17,4 +17,8 @@ export default function() {
       return comics.all();
     }
   });
+
+  this.patch('/comics/:id');
+  this.put('/comics/:id');
+  this.post('/comics');
 }
