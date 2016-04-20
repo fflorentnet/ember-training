@@ -1,14 +1,11 @@
 import Route from '@ember/routing/route';
-import Comic from 'ember-training/models/comic';
 
 export default Route.extend({
   templateName: 'comic/edit',
   controllerName: 'comic/edit',
 
   model () {
-    let newComic = Comic.create();
-    this.modelFor('comics').pushObject(newComic);
-    return newComic;
+    return this.store.createRecord('comic');
   },
 
   resetController (controller) {
@@ -21,20 +18,21 @@ export default Route.extend({
 
   actions: {
     save () {
-      this.transitionTo('comic', this.get('controller.model'));
+      this.get('controller.model').save().then(() => {
+        this.transitionTo('comic', this.get('controller.model'));
+      });
     },
     cancel () {
-      this.resetComic();
+      this.get('controller.model').rollbackAttributes();
       this.transitionTo('comics');
     },
     willTransition (transition) {
-      if (this.controller.get('hasUserSavedOrCancel')) {
-        return true;
-      } else if (confirm('Are you sure you want to abandon progress?')) {
-        this.resetComic();
-        return true;
-      } else {
-        transition.abort();
+      if (this.get('controller.model.hasDirtyAttributes')) {
+        if (confirm('Are you sure you want to abandon progress?')) {
+          this.get('controller.model').rollbackAttributes();
+        } else {
+          transition.abort();
+        }
       }
     }
   }
