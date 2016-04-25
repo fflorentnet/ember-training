@@ -21,4 +21,6 @@ export default function() {
   this.patch('/comics/:id');
   this.put('/comics/:id');
   this.post('/comics');
+
+  this.get('/albums/:id');
 }

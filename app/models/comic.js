@@ -6,9 +6,11 @@ export default DS.Model.extend({
     const title = this.get('title') || 'new';
     return title.dasherize();
   }),
+  
   title: DS.attr('string', {defaultValue: 'new'}),
   scriptwriter: DS.attr('string'),
   illustrator: DS.attr('string'),
   publisher: DS.attr('string'),
-  isFavorite: DS.attr('boolean', {defaultValue: false})
+  isFavorite: DS.attr('boolean', {defaultValue: false}),
+  albums: DS.hasMany('album')
 });

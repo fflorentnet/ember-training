@@ -1,1 +1,9 @@
 {{outlet}}
+
+<div class="comic-albums">
+  <ul>
+    {{#each model.albums as |album|}}
+      {{comic-album model=album}}
+    {{/each}}
+  </ul>
+</div>
