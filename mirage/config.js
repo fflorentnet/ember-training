@@ -20,4 +20,6 @@ export default function() {
 
   this.put('/comics/:id');
   this.post('/comics');
+
+  this.get('/albums/:id');
 }

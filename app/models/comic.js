@@ -10,5 +10,6 @@ export default DS.Model.extend({
   scriptwriter: DS.attr('string'),
   illustrator: DS.attr('string'),
   publisher: DS.attr('string'),
-  isFavorite: DS.attr('boolean', {defaultValue: false})
+  isFavorite: DS.attr('boolean', {defaultValue: false}),
+  albums: DS.hasMany('album')
 });
