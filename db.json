@@ -1,0 +1,71 @@
+{
+  "comics": [
+    {
+      "id": 1,
+      "slug": "blacksad",
+      "title": "Blacksad",
+      "scriptwriter": "Juan Diaz Canales",
+      "illustrator": "Juanjo Guarnido",
+      "publisher": "Dargaud",
+      "albums": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": 2,
+      "slug": "calvin-and-hobbes",
+      "title": "Calvin and Hobbes",
+      "scriptwriter": "Bill Watterson",
+      "illustrator": "Bill Watterson",
+      "publisher": "Andrews McMeel Publishing"
+    },
+    {
+      "id": 3,
+      "slug": "akira",
+      "title": "Akira",
+      "scriptwriter": "Katsuhiro Otomo",
+      "illustrator": "Katsuhiro Otomo",
+      "publisher": "Epic Comics"
+    }
+  ],
+  "albums": [
+    {
+      "id": 1,
+      "title": "Somewhere Within the Shadows",
+      "publicationDate": "2000-11-01",
+      "number": 1,
+      "coverName": "blacksad-1.jpg",
+      "comicId": 1
+    },
+    {
+      "id": 2,
+      "title": "Arctic-Nation",
+      "publicationDate": "2003-04-01",
+      "number": 2,
+      "coverName": "blacksad-2.jpg",
+      "comicId": 1
+    },
+    {
+      "id": 3,
+      "title": "Red Soul",
+      "publicationDate": "2005-11-01",
+      "number": 3,
+      "coverName": "blacksad-3.jpg",
+      "comicId": 1
+    },
+    {
+      "id": 4,
+      "title": "A Silent Hell",
+      "publicationDate": "2010-09-01",
+      "number": 4,
+      "coverName": "blacksad-4.jpg",
+      "comicId": 1
+    },
+    {
+      "id": 5,
+      "title": "Amarillo",
+      "publicationDate": "2013-11-01",
+      "number": 5,
+      "coverName": "blacksad-5.jpg",
+      "comicId": 1
+    }
+  ]
+}
