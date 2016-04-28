@@ -1,53 +1,25 @@
 import { visit, find, findAll, click, fillIn, currentRouteName } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import comicsRoute from 'ember-training/routes/comics';
-import Comic from 'ember-training/models/comic';
+import { startMirage } from '../../initializers/ember-cli-mirage';
 
-const blackSad = Comic.create({
-  slug: 'blacksad',
-  title: 'Blacksad',
-  scriptwriter: 'Juan Diaz Canales',
-  illustrator: 'Juanjo Guarnido',
-  publisher: 'Dargaud'
-});
-
-const calvinAndHobbes = Comic.create({
-  slug: 'calvin-and-hobbes',
-  title: 'Calvin and Hobbes',
-  scriptwriter: 'Bill Watterson',
-  illustrator: 'Bill Watterson',
-  publisher: 'Andrews McMeel Publishing'
-});
-
-const akira = Comic.create({
-  slug: 'akira',
-  title: 'Akira',
-  scriptwriter: 'Katsuhiro Otomo',
-  illustrator: 'Katsuhiro Otomo',
-  publisher: 'Epic Comics'
-});
-
-let COMICS;
-
-module('03 - Controller Acceptance Tests', function(hooks) {
-  setupApplicationTest(hooks);
-
+const setup = function(hooks) {
   hooks.beforeEach(function() {
-    COMICS = [akira, blackSad, calvinAndHobbes];
-    comicsRoute.reopen({
-      model: function () {
-        return COMICS;
-      },
-      modelFor() {
-        return COMICS ;
-      }
-    });
-
+    this.server = startMirage();
+    
     window.confirm = function() {
       return true;
     };
   });
+
+  hooks.afterEach(function() {
+    this.server.shutdown();
+  });
+}
+
+module('03 - Controller Acceptance Tests', function(hooks) {
+  setupApplicationTest(hooks);
+  setup(hooks);
 
   test("03 - Controller - 01 - Should save on edit submit", async function (assert) {
     assert.expect(4);
@@ -66,8 +38,6 @@ module('03 - Controller Acceptance Tests', function(hooks) {
 
     assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
     assert.ok(find(".comic .comic-title").textContent.indexOf(newTitle) >= 0, "Title modified");
-    // Force reinit because of some unconsistency
-    COMICS[0].set('title', "Akira");
   });
 
   test("03 - Controller - 02 - Should cancel on edit reset", async function (assert) {
@@ -107,10 +77,6 @@ module('03 - Controller Acceptance Tests', function(hooks) {
   
     assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
     assert.ok(find(".comic h3").textContent.indexOf(newTitle) >= 0, "Title modified");
-    // Force reinit because of some unconsistency
-    if (COMICS.length === 4) {
-      COMICS.removeAt(3);
-    }
   });
   
   test("03 - Controller - 04 - Should reinit list on create reset", async function (assert) {
@@ -232,9 +198,6 @@ module('03 - Controller Acceptance Tests', function(hooks) {
     assert.equal(currentRouteName(), 'comic.edit', "Route name is correct");
     assert.ok(find(".comic .comic-title input").value.indexOf(newTitle) >= 0, "Title still modified");
     assert.ok(findAll(".comics .comics-list .comics-list-item a")[0].textContent.indexOf(newTitle) >= 0, "List still modified");
-
-    // Force reinit because of some unconsistency
-    COMICS[0].set('title', "Akira");
   });
 
   test("03 - Controller - 09 - Should cancel create on transition", async function (assert) {
@@ -284,11 +247,6 @@ module('03 - Controller Acceptance Tests', function(hooks) {
  
     assert.equal(currentRouteName(), 'comic.index', "Route name is correct");
     assert.equal(findAll(".comics .comics-list .comics-list-item a").length, 4, "Creation cancelled");
-    
-    // Force reinit because of some unconsistency
-    if (COMICS.length === 4) {
-      COMICS.removeAt(3);
-    }
   });
 
   test("03 - Controller - 11 - Should cancel create after confirm true", async function (assert) {
@@ -338,11 +296,6 @@ module('03 - Controller Acceptance Tests', function(hooks) {
     assert.equal(currentRouteName(), 'comics.create', "Route name is correct");
     assert.ok(find(".comic .comic-title input").value.indexOf(newTitle) >= 0, "Title still modified");
     assert.equal(findAll(".comics .comics-list .comics-list-item a").length, 4, "Creation not cancelled");
-
-    // Force reinit because of some unconsistency
-    if (COMICS.length === 4) {
-      COMICS.removeAt(3);
-    }
   });
   
   test("03 - Controller - 13 - Should filter", async function (assert) {

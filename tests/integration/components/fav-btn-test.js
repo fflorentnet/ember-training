@@ -2,7 +2,17 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import Comic from 'ember-training/models/comic';
+import { startMirage } from 'ember-training/initializers/ember-cli-mirage';
+
+
+let Comic = Ember.Object.extend({
+  slug: '',
+  title: '',
+  scriptwriter: '',
+  illustrator: '',
+  publisher: '',
+  isFavorite: false
+});
 
 let akira = Comic.create({
   slug: 'akira',
@@ -13,8 +23,19 @@ let akira = Comic.create({
   isFavorite: false
 });
 
+const setupMirage = function(hooks) {
+  hooks.beforeEach(function() {
+    this.server = startMirage();
+  });
+
+  hooks.afterEach(function() {
+    this.server.shutdown();
+  });
+}
+
 module('Integration | Component | fav btn', function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   test('renders fav-btn', async function(assert) {
   

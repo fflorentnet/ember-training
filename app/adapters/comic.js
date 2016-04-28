@@ -1,6 +1,7 @@
 import BaseAdapter from './application';
 
-export default BaseAdapter.extend({
+// eslint-disable-next-line no-undef
+export default Ember.testing ? BaseAdapter : BaseAdapter.extend({
 
   urlForQueryRecord(query, modelName) {
     return this._buildURL(modelName) + "?_embed=albums";

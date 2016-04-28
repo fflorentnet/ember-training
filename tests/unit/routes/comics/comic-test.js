@@ -52,26 +52,4 @@ module('Unit | Route | comic', function(hooks) {
     assert.ok(route);
   });
   
-  test('model() should retrieve existing slug', function (assert) {
-    const route = this.owner.lookup('route:comic');
-  
-    const params = {comic_slug: 'blacksad'};
-    const model = route.model(params);
-  
-    assert.equal(model, blackSad, "model with existing slug retrieved");
-  });
-  
-  test('model() should throw error if slug not found', function (assert) {
-    assert.expect(1);
-  
-    const route = this.owner.lookup('route:comic');
-    let params = {comic_slug: 'wrong'};
-  
-    try {
-      route.model(params);
-    }
-    catch (error) {
-      assert.ok(error !== undefined, "non existing model throws exception");
-    }
-  });
 });
