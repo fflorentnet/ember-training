@@ -1,7 +1,15 @@
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Comic from 'ember-training/models/comic';
+
+let Comic = Ember.Object.extend({
+  slug: '',
+  title: '',
+  scriptwriter: '',
+  illustrator: '',
+  publisher: '',
+  isFavorite: false
+});
 
 let akira = Comic.create({
   slug: 'akira',
