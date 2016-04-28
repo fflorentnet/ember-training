@@ -33,6 +33,7 @@ module.exports = function(environment) {
     ENV['ember-cli-mirage'] = {
       enabled: false
     };
+    ENV.host =  'http://localhost:3000';
   }
 
   if (environment === 'test') {
@@ -45,6 +46,10 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV['ember-cli-mirage'] = {
+      enabled: false
+    };
   }
 
   if (environment === 'production') {
