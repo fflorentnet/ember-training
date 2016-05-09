@@ -20,6 +20,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    fastboot: {
+      hostWhitelist: ['bmeurant-ember-training-server.herokuapp.com', /^localhost:\d+$/]
     }
   };
 
@@ -53,7 +57,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.host =  'https://bmeurant-ember-training-server.herokuapp.com';
   }
 
   return ENV;

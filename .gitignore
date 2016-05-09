@@ -27,3 +27,8 @@ package.json.ember-try
 .vscodeignore
 jsconfig.json
 ember.d.ts
+.vscode
+typings
+
+db.json
+
