@@ -9,16 +9,15 @@ You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
-* [Bower](https://bower.io/)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd my-app`
-* `npm install`
-* `bower install`
+* `cd ember-training`
+* `yarn`
 
 ## Running / Development
 
