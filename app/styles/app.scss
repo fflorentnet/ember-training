@@ -1,229 +1,316 @@
-@import "ember-bootstrap/bootstrap";
+@import "ember-bootstrap/variables";
+
+$enable-shadows: false;
+$input-group-addon-bg: $brand-primary;
+
+// Core variables and mixins
+@import "ember-bootstrap/mixins";
+
+// Reset and dependencies
+@import "ember-bootstrap/normalize";
+
+// Core CSS
+@import "ember-bootstrap/reboot";
+@import "ember-bootstrap/type";
+@import "ember-bootstrap/images";
+@import "ember-bootstrap/grid";
+@import "ember-bootstrap/forms";
+@import "ember-bootstrap/buttons";
+
+// Components
+@import "ember-bootstrap/button-group";
+@import "ember-bootstrap/input-group";
+@import "ember-bootstrap/list-group";
+
+@import "font-awesome";
+
+/* ----- Mixins ----- */
 
 @mixin btn-icon {
-  padding: 4px 4px 2px;
-  line-height: 1;
-  margin-top: 10px;
+  padding: 0.25 * $font-size-base;
+  line-height: 1 * $font-size-base;
   border: none;
-  font-size: 20px;
+  font-size: 1.25rem;
+  width: 1.8 * $font-size-base;
+  height: 1.8 * $font-size-base;
 }
 
-@mixin zone {
-  margin-top: 10px;
-  padding: 10px;
+/* ----- General styles ----- */
+
+.btn-primary {
+  @extend .btn-primary;
+
   background-color: $body-bg;
-  text-align: left;
-}
+  color: $brand-primary;
+  border-color: $input-border-color;
 
-@mixin bordered-zone {
-  border: solid 1px $body-bg;
-  border-radius: 6px;
-  @include zone;
-}
-
-.img-thumbnail {
-  padding: 4px;
-  line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-}
-
-.comics {
-  @extend .col-xs-12;
-  @extend .col-md-3;
-
-  h2 {
-    margin-top: 0;
-  }
-
-  .filter {
-    @extend .form-control;
-    display: inline-block;
-    margin-bottom: 10px;
-
-    width: 80%
-  }
-
-  .sort {
-    @extend .btn;
-    @extend .btn-default;
-    @include btn-icon;
-
-    float: right;
+  &:hover, &:focus, &.focus, &:active, &.active {
     background-color: $brand-primary;
     color: $body-bg;
-    font-size: 17px;
-    padding: 10px 10px 6px;
-    margin-top: 0;
+    outline: none;
+  }
+}
 
-    &:hover, &:focus, &:active {
-      background-color: $brand-primary !important;
-      color: $body-bg !important;
-      border: none !important;
-      outline: none !important;
+.bordered-zone {
+  border: solid 1px $input-border-color;
+  border-radius: $border-radius;
+  background-color: $brand-primary;
+  color: $body-bg;
+}
+
+.cover {
+  height: 250px;
+  width: 190px;
+  padding: 0.5 * $spacer;
+  @extend .img-thumbnail;
+}
+
+/* ----- Forms & Inputs ----- */
+
+input {
+  @extend .form-control;
+}
+
+/* ----- Grid & Structure ----- */
+
+.application {
+  @include make-container();
+  @include make-container-max-widths();
+
+  .header {
+    @include make-row();
+
+    h1 {
+      @include make-col-ready();
+      @include make-col(12);
+    }
+  }
+
+  .main {
+    @include make-row();
+
+    .comics {
+      @include make-col-ready();
+      @include make-col(12);
+
+      @include media-breakpoint-up(lg) {
+        @include make-col(3);
+      }
     }
 
+    .comic {
+      @include make-col-ready();
+      @include make-col(12);
+
+      @include media-breakpoint-up(lg) {
+        @include make-col(5);
+      }
+    }
+
+    .comic-albums {
+      @include make-col-ready();
+      @include make-col(12);
+
+      @include media-breakpoint-up(lg) {
+        @include make-col(4);
+      }
+    }
+  }
+}
+
+.comic {
+  .comic-description {
+    @include make-row();
+
+    .comic-label, .comic-value {
+      @include make-col-ready();
+    }
+
+    .comic-label {
+      @include make-col(4);
+    }
+
+    .comic-value {
+      @include make-col(8);
+    }
+  }
+}
+
+.comic-albums {
+  .album {
+    @include make-row();
+
+    .album-cover {
+      @extend .cover;
+      @include make-col(2);
+    }
+
+    .album-description {
+      @include make-col-ready();
+      @include make-col(10);
+
+      .album-record {
+        @include make-row();
+
+        .album-label, .album-value {
+          @include make-col-ready();
+        }
+
+        .album-label {
+          @include make-col(3);
+        }
+
+        .album-value {
+          @include make-col(9);
+        }
+      }
+    }
+  }
+}
+
+/* ------ Header ------ */
+
+.header {
+  border-bottom: 1px solid $gray-lighter;
+  padding-bottom: $spacer-y * .5;
+  margin: $spacer-y * 1.5 0;
+}
+
+/* ----- Comics ----- */
+
+.comics > * {
+  margin-bottom: $spacer;
+}
+
+.comics-filter {
+  @extend .input-group;
+
+  .btn-sort {
+    @extend .input-group-addon;
+    color: $body-bg;
+    cursor: pointer;
+
     &.sort-asc:before {
-      content: "\e114";
-      font-family: 'Glyphicons Halflings';
+      @include fa-icon();
+      content: $fa-var-chevron-down;
     }
 
     &.sort-desc:before {
-      content: "\e113";
-      font-family: 'Glyphicons Halflings';
+      @include fa-icon();
+      content: $fa-var-chevron-up;
     }
   }
+}
 
-  ul {
-    @extend .list-group;
+.comics-list {
+  @extend .list-group;
 
-    & > li {
-      @extend .list-group-item;
+  .comics-list-item {
+    @extend .list-group-item-action, .list-group-item;
 
-      cursor: pointer;
+    padding: 0;
+    font-size: $font-size-sm;
 
-      &:not(.active) {
-        &.comic-with-scriptwriter {
-          @extend .list-group-item-success;
-        }
+    a {
+      padding: 0.75 * $spacer;
+      width: 100%;
 
-        &.comic-without-scriptwriter {
-          @extend .list-group-item-danger;
-        }
-
-        &:hover {
-          color: $gray-dark;
-          background-color: $gray-lighter;
-        }
-      }
-
-      a.active {
+      &:active {
         text-decoration: underline;
       }
     }
-  }
 
-  .add-comic {
-    @include bordered-zone;
+    &.comic-with-scriptwriter {
+      @extend .list-group-item-success;
 
-    display: block;
-    border-color: $gray-lighter;
-    padding-left: 47%;
-    padding-right: 47%;
-    margin-bottom: 10px;
+      &:hover, a.active {
+        background-color: darken($state-success-bg, 5%);
+      }
+    }
 
-    &:before {
-      font-family: 'Glyphicons Halflings';
-      content: "\2b";
+    &.comic-without-scriptwriter {
+      @extend .list-group-item-danger;
+
+      &:hover, a.active {
+        background-color: darken($state-danger-bg, 5%);
+      }
     }
   }
 }
 
-#no-selected-comic {
-  @extend .col-xs-12;
-  @extend .col-md-9;
+.add-comic {
+  @extend .btn, .btn-primary;
+
+  display: block;
+
+  &:before {
+    @include fa-icon();
+    content: $fa-var-plus;
+  }
 }
 
-#error {
-  @extend .col-xs-12;
-  @extend .col-md-9;
+/* ------ comic ----- */
 
-  @extend .alert;
-  @extend .alert-danger;
-}
+.comic {
+  @extend .bordered-zone;
+  text-align: center;
+  padding: $spacer;
 
-.buttons {
-  float: right;
-  margin-top: 4px;
+  & > * {
+    margin-bottom: 0.5 * $spacer;
+  }
 }
 
 .btn-fav {
   @extend .btn;
-  @include btn-icon;
 
   background-color: $body-bg;
-  color: $brand-primary;
   width: 100%;
-  font-size: 200%;
+  color: $brand-primary;
+  padding: .25 * $spacer;
+  font-size: 1.5 * $font-size-base;
 
   &:before {
-    font-family: 'Glyphicons Halflings';
-    content: "\e007";
+    @include fa-icon();
+    content: $fa-var-star-o;
   }
 
   &.selected {
     &:before {
-      font-family: 'Glyphicons Halflings';
-      content: "\e006";
+      @include fa-icon();
+      content: $fa-var-star;
     }
   }
 }
 
-.selected-comic {
-  @extend .col-xs-12;
-  @extend .col-md-5;
 
-  background-color: #428bca;
-  border: solid 1px #e5e5e5;
-  border-radius: 6px;
-  text-align: center;
-  padding-bottom: 15px;
+.comic-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacer;
+  text-align: left;
 
-  .description {
-    @include bordered-zone;
+  .comic-title {
+    width: 85%;
   }
 
-  h3 {
-    color: #ffffff;
-    margin-top: 15px;
-    text-align: left;
-    margin-bottom: 13px;
-  }
+  .buttons {
+    margin-top: 0.25 * $spacer;
 
-  .cover {
-    height: 250px;
-    width: 190px;
-    padding: 10px;
-    @extend .img-thumbnail;
-  }
+    .btn-edit {
+      @extend .btn;
+      @include btn-icon;
 
-  dl {
-    @extend .dl-horizontal;
-    @include bordered-zone;
+      background-color: $body-bg;
 
-    margin-top: 10px;
-    padding: 10px;
-  }
+      &:before {
+        @include fa-icon();
+        content: $fa-var-pencil;
+      }
 
-  dt {
-    text-align: left !important;
-    width: 120px !important;
-  }
-
-  .btn-edit {
-    @extend .btn;
-    @include btn-icon;
-
-    background-color: $body-bg;
-    color: $brand-primary;
-
-    &:before {
-      font-family: 'Glyphicons Halflings';
-      content: "\270f";
-    }
-  }
-
-  form {
-    @extend .form-horizontal;
-
-    input {
-      @extend .form-control;
+      &:hover {
+        color: black;
+      }
     }
 
     .btn-submit {
@@ -232,10 +319,9 @@
       @include btn-icon;
 
       &:before {
-        font-family: 'Glyphicons Halflings';
-        content: "\e013";
+        @include fa-icon();
+        content: $fa-var-check;
       }
-      margin-left: 5px;
     }
 
     .btn-cancel {
@@ -244,83 +330,65 @@
       @include btn-icon;
 
       &:before {
-        font-family: 'Glyphicons Halflings';
-        content: "\e014";
-      }
-    }
-
-    .title, .scriptwriter, .illustrator, .publisher {
-      @extend .form-group;
-      @include clearfix;
-
-      label {
-        @include make-sm-column(3);
-        padding-top: 7px;
-      }
-
-      .control {
-        @include make-sm-column(9);
-      }
-    }
-
-    .title {
-      margin-left: 0;
-
-      input {
-        margin: 10px 0 10px;
-        width: 80%;
-        text-align: left;
-        font-size: 24px;
+        @include fa-icon();
+        content: $fa-var-close;
       }
     }
   }
 }
 
-.comic-albums {
-  @extend .col-xs-12;
-  @extend .col-md-4;
+.comic-description {
+  color: $black;
+  border-radius: $border-radius;
+  background-color: $body-bg;
+  margin: $spacer 0 !important;
+  padding: 0.75 * $spacer-y;
+  text-align: left;
 
+  .comic-label {
+    padding-left: 0;
+    margin: 0.5 * $spacer 0;
+  }
+
+  .comic-value {
+    padding-right: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+form .comic-description .comic-label {
+  margin-top: $spacer;
+}
+
+/* ----- Albums ------ */
+
+.comic-albums {
   ul {
-    margin: 20px 0;
+    margin: 0;
     padding-left: 10px;
   }
 
   .album {
-    @include make-row();
+    @extend .bordered-zone;
+
     list-style: none;
-    @include bordered-zone();
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: $brand-primary;
-    color: $body-bg;
+    padding: 0.5 * $spacer;
+    margin-bottom: 0.75 * $spacer;
 
-    h4 {
-      margin-top: 0;
-    }
+    .album-cover {
+      @extend .cover;
 
-    .cover {
-      @extend .col-xs-2;
       max-height: 70px;
       border: none;
-      padding: 2px;
+      padding: 0.25 * $spacer;
     }
 
-    .description {
-      @extend .col-xs-10;
+    .album-title {
+      font-size: 1.1 * $font-size-base;
+    }
 
-      dl {
-        @extend .dl-horizontal;
-        margin-bottom: 0;
-
-        dt {
-          width: 75px;
-          text-align: left;
-        }
-
-        dd {
-          margin-left: auto;
-        }
-      }
+    .album-record, .album-value {
+      margin-bottom: 0;
     }
   }
 }
