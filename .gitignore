@@ -29,6 +29,7 @@ jsconfig.json
 ember.d.ts
 .vscode
 typings
+*.iml
 
 db.json
 
