@@ -20,10 +20,6 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    },
-
-    fastboot: {
-      hostWhitelist: ['bmeurant-ember-training-server.herokuapp.com', /^localhost:\d+$/]
     }
   };
 
@@ -35,10 +31,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     //TODO: a tester
-    //ENV['ember-cli-mirage'] = {
-    //  enabled: false
-    //};
-    ENV.host =  'http://localhost:4200';
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
+    ENV.host =  '';
   }
 
   if (environment === 'test') {
