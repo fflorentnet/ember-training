@@ -25,7 +25,7 @@ package.json.ember-try
 #IDE
 /.idea
 .vscodeignore
-jsconfig.json
+#jsconfig.json
 ember.d.ts
 .vscode
 typings
