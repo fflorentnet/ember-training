@@ -18,6 +18,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "@ember-decorators/argument": "^0.8.21",
     "@ember-decorators/babel-transforms": "^3.1.0",
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
