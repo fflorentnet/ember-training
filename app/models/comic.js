@@ -1,16 +1,21 @@
-import { computed } from '@ember/object';
 import DS from 'ember-data';
+import { attr, hasMany } from '@ember-decorators/data'; 
+import { computed } from '@ember-decorators/object';
 
-export default DS.Model.extend({
-  slug: computed('title', function() {
-    const title = this.get('title') || 'new';
-    return title.dasherize();
-  }),
-  
-  title: DS.attr('string', {defaultValue: 'new'}),
-  scriptwriter: DS.attr('string'),
-  illustrator: DS.attr('string'),
-  publisher: DS.attr('string'),
-  isFavorite: DS.attr('boolean', {defaultValue: false}),
-  albums: DS.hasMany('album')
-});
+const { Model } = DS;
+
+
+export default class ComicModel extends Model {        
+    @attr('string', { defaultValue: 'new' }) title;
+    @attr('string') scriptwriter;
+    @attr('string') illustrator;
+    @attr('string') publisher;
+    @attr('boolean', { defaultValue: false }) isFavorite;
+    @hasMany('album') albums;
+
+    @computed('title')
+    get slug() {
+        const title = this.get('title') || 'new';
+        return title.dasherize();
+    }
+}
